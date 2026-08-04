@@ -71,7 +71,8 @@
     .activity-card { overflow: hidden; display: flex; flex-direction: column; background: var(--paper); border: 1px solid var(--line); border-radius: 31px; box-shadow: var(--shadow); transition: transform .25s,box-shadow .25s; }
     .activity-card:hover { transform: translateY(-6px); box-shadow: 0 32px 75px rgba(78,50,31,.17); }
     .activity-preview { position: relative; height: clamp(220px,25vw,310px); overflow: hidden; background: #d6c1af; }
-    .activity-preview img { height: 100%; object-fit: cover; transition: transform .55s; }
+    .activity-preview img { height: 100%; object-fit: cover; object-position: center; transition: transform .55s; }
+    .activity-preview img.show-entire-image { object-fit: contain; background: #f1e8dc; }
     .activity-card:hover .activity-preview img { transform: scale(1.025); }
     .activity-preview::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg,rgba(48,31,22,.03),rgba(48,31,22,.09)); pointer-events: none; }
     .activity-number { position: absolute; top: 16px; left: 18px; z-index: 3; padding: 8px 13px; color: #3b2e27; background: rgba(255,252,247,.9); border: 1px solid rgba(77,53,38,.09); border-radius: 999px; backdrop-filter: blur(8px); font-size: 11px; font-weight: 850; letter-spacing: .12em; text-transform: uppercase; }
@@ -139,7 +140,7 @@
         <header class="activities-header"><p class="section-label">Choose an activity</p><h2 class="activities-title">Let’s start talking</h2></header>
         <div class="activity-grid">
           <article class="activity-card">
-            <div class="activity-preview"><img src="assets/holiday-stories-preview.png" alt="Starfish heart on sand for Holiday Stories"><span class="activity-number">Activity 01</span></div>
+            <div class="activity-preview"><img class="show-entire-image" src="assets/holiday-stories-preview-v2.png" alt="Starfish heart on neutral sand for Holiday Stories"><span class="activity-number">Activity 01</span></div>
             <div class="activity-content">
               <div class="activity-type">Storytelling · Discussion</div>
               <h3>Holiday Stories</h3>
@@ -152,7 +153,7 @@
           </article>
 
           <article class="activity-card">
-            <div class="activity-preview"><img src="assets/instagram-vs-reality-preview.png" alt="Vacation polaroid collage for Instagram versus Reality"><span class="activity-number">Activity 02</span></div>
+            <div class="activity-preview"><img src="assets/instagram-vs-reality-preview-v2.png" alt="Vacation polaroid collage for Instagram versus Reality"><span class="activity-number">Activity 02</span></div>
             <div class="activity-content">
               <div class="activity-type">Prediction · Discussion</div>
               <h3>Instagram vs Reality</h3>
