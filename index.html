@@ -200,6 +200,8 @@
 
   <footer><a class="footer-link" href="https://vk.ru/maria_tokareva_teaching" target="_blank" rel="noopener noreferrer">Maria Tokareva Teaching</a><p class="footer-note">Communicative materials for meaningful English lessons.</p></footer>
   <button class="ocean-toggle" type="button" aria-pressed="false" aria-label="Turn ocean sound on"><span class="ocean-icon" aria-hidden="true">🌊</span><span class="ocean-label">Ocean sound: off</span></button>
+  <!-- Public-domain water recording: Dsw4, Wikimedia Commons, File:Waves.ogg -->
+  <audio id="ocean-audio" src="assets/gentle-waves.mp3" loop preload="none"></audio>
   <script>
     document.querySelectorAll('.how-toggle').forEach(toggle => {
       toggle.addEventListener('click', () => {
@@ -213,58 +215,34 @@
 
     const oceanButton = document.querySelector('.ocean-toggle');
     const oceanLabel = oceanButton.querySelector('.ocean-label');
-    let audioContext;
-    let oceanOutput;
+    const oceanAudio = document.querySelector('#ocean-audio');
     let oceanIsPlaying = false;
+    let fadeFrame;
 
-    function createOceanSound() {
-      audioContext = new (window.AudioContext || window.webkitAudioContext)();
-      const duration = 10;
-      const buffer = audioContext.createBuffer(1, audioContext.sampleRate * duration, audioContext.sampleRate);
-      const data = buffer.getChannelData(0);
-      let last = 0;
-      for (let i = 0; i < data.length; i++) {
-        const white = Math.random() * 2 - 1;
-        last = (last + .018 * white) / 1.018;
-        data[i] = last * 3.2;
-      }
-
-      const noise = audioContext.createBufferSource();
-      noise.buffer = buffer;
-      noise.loop = true;
-
-      const lowpass = audioContext.createBiquadFilter();
-      lowpass.type = 'lowpass';
-      lowpass.frequency.value = 1050;
-      lowpass.Q.value = .5;
-
-      const highpass = audioContext.createBiquadFilter();
-      highpass.type = 'highpass';
-      highpass.frequency.value = 70;
-
-      const swell = audioContext.createGain();
-      swell.gain.value = .62;
-      const lfo = audioContext.createOscillator();
-      const lfoDepth = audioContext.createGain();
-      lfo.frequency.value = .085;
-      lfoDepth.gain.value = .22;
-      lfo.connect(lfoDepth).connect(swell.gain);
-
-      oceanOutput = audioContext.createGain();
-      oceanOutput.gain.value = 0;
-      noise.connect(lowpass).connect(highpass).connect(swell).connect(oceanOutput).connect(audioContext.destination);
-      noise.start();
-      lfo.start();
+    function fadeOceanTo(target) {
+      cancelAnimationFrame(fadeFrame);
+      const step = () => {
+        const difference = target - oceanAudio.volume;
+        if (Math.abs(difference) < .01) {
+          oceanAudio.volume = target;
+          if (target === 0) oceanAudio.pause();
+          return;
+        }
+        oceanAudio.volume = Math.max(0, Math.min(1, oceanAudio.volume + difference * .09));
+        fadeFrame = requestAnimationFrame(step);
+      };
+      step();
     }
 
     oceanButton.addEventListener('click', async () => {
-      if (!audioContext) createOceanSound();
-      if (audioContext.state === 'suspended') await audioContext.resume();
       oceanIsPlaying = !oceanIsPlaying;
-      const now = audioContext.currentTime;
-      oceanOutput.gain.cancelScheduledValues(now);
-      oceanOutput.gain.setValueAtTime(oceanOutput.gain.value, now);
-      oceanOutput.gain.linearRampToValueAtTime(oceanIsPlaying ? .09 : 0, now + .8);
+      if (oceanIsPlaying) {
+        oceanAudio.volume = 0;
+        await oceanAudio.play();
+        fadeOceanTo(.38);
+      } else {
+        fadeOceanTo(0);
+      }
       oceanButton.setAttribute('aria-pressed', String(oceanIsPlaying));
       oceanButton.setAttribute('aria-label', oceanIsPlaying ? 'Turn ocean sound off' : 'Turn ocean sound on');
       oceanLabel.textContent = oceanIsPlaying ? 'Ocean sound: on' : 'Ocean sound: off';
