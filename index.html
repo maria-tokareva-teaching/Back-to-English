@@ -100,6 +100,30 @@
     .footer-link { display: inline-block; font: clamp(16px,1.8vw,20px) Georgia,"Times New Roman",serif; text-decoration: none; }
     .footer-link:hover { color: var(--terracotta-dark); }
     .footer-note { margin: 8px 0 0; color: var(--muted); font-size: 12px; }
+    .ocean-toggle {
+      position: fixed;
+      right: 22px;
+      bottom: 22px;
+      z-index: 20;
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      min-height: 46px;
+      padding: 10px 16px;
+      color: #59483e;
+      background: rgba(255,252,247,.88);
+      border: 1px solid rgba(77,53,38,.16);
+      border-radius: 999px;
+      box-shadow: 0 12px 30px rgba(70,45,27,.16);
+      backdrop-filter: blur(12px);
+      cursor: pointer;
+      font-size: 13px;
+      font-weight: 800;
+      transition: transform .2s,background .2s,color .2s;
+    }
+    .ocean-toggle:hover { transform: translateY(-2px); }
+    .ocean-toggle[aria-pressed="true"] { color: white; background: var(--terracotta); }
+    .ocean-icon { font-size: 19px; line-height: 1; }
     @media (max-width:960px) { .activity-grid { grid-template-columns:1fr; } .coming-card { grid-column:auto; } .activity-preview { height:300px; } }
     @media (max-width:720px) {
       .hero { min-height:auto; padding:28px 13px; }
@@ -110,6 +134,7 @@
       .activity-content { padding:24px 20px 25px; }
       .coming-card { grid-template-columns:1fr; }
       .coming-badge { width:140px; height:140px; font-size:22px; }
+      .ocean-toggle { right:14px; bottom:14px; padding:9px 13px; }
     }
     @media (prefers-reduced-motion:reduce) { html { scroll-behavior:auto; } .hero-box { animation:none; } }
   </style>
@@ -174,6 +199,7 @@
   </main>
 
   <footer><a class="footer-link" href="https://vk.ru/maria_tokareva_teaching" target="_blank" rel="noopener noreferrer">Maria Tokareva Teaching</a><p class="footer-note">Communicative materials for meaningful English lessons.</p></footer>
+  <button class="ocean-toggle" type="button" aria-pressed="false" aria-label="Turn ocean sound on"><span class="ocean-icon" aria-hidden="true">🌊</span><span class="ocean-label">Ocean sound: off</span></button>
   <script>
     document.querySelectorAll('.how-toggle').forEach(toggle => {
       toggle.addEventListener('click', () => {
@@ -183,6 +209,65 @@
         toggle.setAttribute('aria-expanded', String(open));
         toggle.querySelector('span:last-child').textContent = open ? 'Hide instructions' : 'How to play';
       });
+    });
+
+    const oceanButton = document.querySelector('.ocean-toggle');
+    const oceanLabel = oceanButton.querySelector('.ocean-label');
+    let audioContext;
+    let oceanOutput;
+    let oceanIsPlaying = false;
+
+    function createOceanSound() {
+      audioContext = new (window.AudioContext || window.webkitAudioContext)();
+      const duration = 10;
+      const buffer = audioContext.createBuffer(1, audioContext.sampleRate * duration, audioContext.sampleRate);
+      const data = buffer.getChannelData(0);
+      let last = 0;
+      for (let i = 0; i < data.length; i++) {
+        const white = Math.random() * 2 - 1;
+        last = (last + .018 * white) / 1.018;
+        data[i] = last * 3.2;
+      }
+
+      const noise = audioContext.createBufferSource();
+      noise.buffer = buffer;
+      noise.loop = true;
+
+      const lowpass = audioContext.createBiquadFilter();
+      lowpass.type = 'lowpass';
+      lowpass.frequency.value = 1050;
+      lowpass.Q.value = .5;
+
+      const highpass = audioContext.createBiquadFilter();
+      highpass.type = 'highpass';
+      highpass.frequency.value = 70;
+
+      const swell = audioContext.createGain();
+      swell.gain.value = .62;
+      const lfo = audioContext.createOscillator();
+      const lfoDepth = audioContext.createGain();
+      lfo.frequency.value = .085;
+      lfoDepth.gain.value = .22;
+      lfo.connect(lfoDepth).connect(swell.gain);
+
+      oceanOutput = audioContext.createGain();
+      oceanOutput.gain.value = 0;
+      noise.connect(lowpass).connect(highpass).connect(swell).connect(oceanOutput).connect(audioContext.destination);
+      noise.start();
+      lfo.start();
+    }
+
+    oceanButton.addEventListener('click', async () => {
+      if (!audioContext) createOceanSound();
+      if (audioContext.state === 'suspended') await audioContext.resume();
+      oceanIsPlaying = !oceanIsPlaying;
+      const now = audioContext.currentTime;
+      oceanOutput.gain.cancelScheduledValues(now);
+      oceanOutput.gain.setValueAtTime(oceanOutput.gain.value, now);
+      oceanOutput.gain.linearRampToValueAtTime(oceanIsPlaying ? .09 : 0, now + .8);
+      oceanButton.setAttribute('aria-pressed', String(oceanIsPlaying));
+      oceanButton.setAttribute('aria-label', oceanIsPlaying ? 'Turn ocean sound off' : 'Turn ocean sound on');
+      oceanLabel.textContent = oceanIsPlaying ? 'Ocean sound: on' : 'Ocean sound: off';
     });
   </script>
 </body>
