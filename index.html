@@ -78,7 +78,7 @@
     .activity-content { flex: 1; padding: 24px 26px 26px; display: flex; flex-direction: column; }
     .activity-type { margin-bottom: 8px; color: var(--terracotta-dark); font-size: 11px; font-weight: 850; letter-spacing: .15em; text-transform: uppercase; }
     .activity-card h3 { margin: 0; font: 400 clamp(32px,3.5vw,47px)/1.04 Georgia,"Times New Roman",serif; }
-    .activity-description { margin: 12px 0 0; color: var(--muted); font-size: 16px; line-height: 1.5; }
+    .activity-description { margin: 12px 0 0; color: var(--muted); font-size: 17px; line-height: 1.52; }
     .activity-divider { height: 1px; margin-top: 18px; background: rgba(79,55,40,.13); }
     .how-toggle { width: 100%; padding: 15px 0 5px; display: flex; align-items: center; gap: 9px; color: #8f472c; background: transparent; border: 0; cursor: pointer; font-size: 16px; font-weight: 800; text-align: left; }
     .how-arrow { display: inline-block; transition: transform .25s; }
@@ -88,7 +88,7 @@
     .instructions-inner { overflow: hidden; }
     .instructions-box { margin-top: 9px; padding: 16px 18px; background: #f5ebe2; border: 1px solid rgba(91,62,43,.11); border-radius: 15px; }
     .instructions-box ol { margin: 0; padding-left: 21px; display: grid; gap: 7px; }
-    .instructions-box li { padding-left: 2px; color: #5a4a41; font-size: 14px; line-height: 1.45; }
+    .instructions-box li { padding-left: 2px; color: #5a4a41; font-size: 15px; line-height: 1.48; }
     .start-button { min-height: 44px; margin: 17px 0 0 auto; padding: 10px 19px; display: inline-flex; align-items: center; justify-content: center; align-self: flex-end; color: white; background: var(--ink); border-radius: 999px; font-size: 15px; font-weight: 800; text-decoration: none; transition: transform .2s,background .2s; }
     .start-button:hover { transform: translateY(-2px); background: var(--terracotta-dark); }
 
@@ -96,34 +96,10 @@
     .coming-card h3 { margin: 0; font: 400 clamp(41px,4.6vw,67px)/1.05 Georgia,"Times New Roman",serif; }
     .coming-card p { max-width: 720px; margin: 20px 0 0; color: var(--muted); font-size: 20px; line-height: 1.65; }
     .coming-badge { width: 180px; height: 180px; display: grid; place-items: center; color: #67584e; background: rgba(255,252,247,.55); border: 1px solid rgba(82,59,44,.2); border-radius: 50%; font: 27px/1.16 Georgia,"Times New Roman",serif; text-align: center; transform: rotate(4deg); }
-    footer { padding: 52px 24px; text-align: center; background: rgba(240,228,215,.74); border-top: 1px solid rgba(77,52,38,.1); }
+    footer { padding: 27px 20px; text-align: center; background: rgba(240,228,215,.74); border-top: 1px solid rgba(77,52,38,.1); }
     .footer-link { display: inline-block; font: clamp(16px,1.8vw,20px) Georgia,"Times New Roman",serif; text-decoration: none; }
     .footer-link:hover { color: var(--terracotta-dark); }
     .footer-note { margin: 8px 0 0; color: var(--muted); font-size: 12px; }
-    .ocean-toggle {
-      position: fixed;
-      right: 22px;
-      bottom: 22px;
-      z-index: 20;
-      display: inline-flex;
-      align-items: center;
-      gap: 9px;
-      min-height: 46px;
-      padding: 10px 16px;
-      color: #59483e;
-      background: rgba(255,252,247,.88);
-      border: 1px solid rgba(77,53,38,.16);
-      border-radius: 999px;
-      box-shadow: 0 12px 30px rgba(70,45,27,.16);
-      backdrop-filter: blur(12px);
-      cursor: pointer;
-      font-size: 13px;
-      font-weight: 800;
-      transition: transform .2s,background .2s,color .2s;
-    }
-    .ocean-toggle:hover { transform: translateY(-2px); }
-    .ocean-toggle[aria-pressed="true"] { color: white; background: var(--terracotta); }
-    .ocean-icon { font-size: 19px; line-height: 1; }
     @media (max-width:960px) { .activity-grid { grid-template-columns:1fr; } .coming-card { grid-column:auto; } .activity-preview { height:300px; } }
     @media (max-width:720px) {
       .hero { min-height:auto; padding:28px 13px; }
@@ -134,7 +110,6 @@
       .activity-content { padding:24px 20px 25px; }
       .coming-card { grid-template-columns:1fr; }
       .coming-badge { width:140px; height:140px; font-size:22px; }
-      .ocean-toggle { right:14px; bottom:14px; padding:9px 13px; }
     }
     @media (prefers-reduced-motion:reduce) { html { scroll-behavior:auto; } .hero-box { animation:none; } }
   </style>
@@ -199,9 +174,6 @@
   </main>
 
   <footer><a class="footer-link" href="https://vk.ru/maria_tokareva_teaching" target="_blank" rel="noopener noreferrer">Maria Tokareva Teaching</a><p class="footer-note">Communicative materials for meaningful English lessons.</p></footer>
-  <button class="ocean-toggle" type="button" aria-pressed="false" aria-label="Turn ocean sound on"><span class="ocean-icon" aria-hidden="true">🌊</span><span class="ocean-label">Ocean sound: off</span></button>
-  <!-- Public-domain water recording: Dsw4, Wikimedia Commons, File:Waves.ogg -->
-  <audio id="ocean-audio" src="assets/gentle-waves.mp3" loop preload="none"></audio>
   <script>
     document.querySelectorAll('.how-toggle').forEach(toggle => {
       toggle.addEventListener('click', () => {
@@ -213,40 +185,6 @@
       });
     });
 
-    const oceanButton = document.querySelector('.ocean-toggle');
-    const oceanLabel = oceanButton.querySelector('.ocean-label');
-    const oceanAudio = document.querySelector('#ocean-audio');
-    let oceanIsPlaying = false;
-    let fadeFrame;
-
-    function fadeOceanTo(target) {
-      cancelAnimationFrame(fadeFrame);
-      const step = () => {
-        const difference = target - oceanAudio.volume;
-        if (Math.abs(difference) < .01) {
-          oceanAudio.volume = target;
-          if (target === 0) oceanAudio.pause();
-          return;
-        }
-        oceanAudio.volume = Math.max(0, Math.min(1, oceanAudio.volume + difference * .09));
-        fadeFrame = requestAnimationFrame(step);
-      };
-      step();
-    }
-
-    oceanButton.addEventListener('click', async () => {
-      oceanIsPlaying = !oceanIsPlaying;
-      if (oceanIsPlaying) {
-        oceanAudio.volume = 0;
-        await oceanAudio.play();
-        fadeOceanTo(.38);
-      } else {
-        fadeOceanTo(0);
-      }
-      oceanButton.setAttribute('aria-pressed', String(oceanIsPlaying));
-      oceanButton.setAttribute('aria-label', oceanIsPlaying ? 'Turn ocean sound off' : 'Turn ocean sound on');
-      oceanLabel.textContent = oceanIsPlaying ? 'Ocean sound: on' : 'Ocean sound: off';
-    });
   </script>
 </body>
 </html>
