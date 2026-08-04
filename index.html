@@ -7,264 +7,183 @@
   <title>Back to English — Maria Tokareva Teaching</title>
   <style>
     :root {
-      --cream: #f5ecdd;
-      --paper: #fffaf1;
-      --ink: #35261d;
-      --muted: #79685d;
-      --rust: #bd6b3f;
-      --rust-dark: #8c482b;
-      --sage: #7c8974;
-      --line: rgba(70,48,33,.15);
-      --shadow: 0 24px 60px rgba(70,45,27,.14);
+      --page: #f5efe7;
+      --paper: #fffdf9;
+      --ink: #34251e;
+      --muted: #7b6c62;
+      --terracotta: #a9502f;
+      --terracotta-dark: #7d3b25;
+      --line: rgba(70,48,35,.12);
+      --shadow: 0 24px 65px rgba(78,50,31,.13);
     }
     * { box-sizing: border-box; }
     html { scroll-behavior: smooth; }
     body {
       margin: 0;
       color: var(--ink);
-      background: #f8f1e7;
-      font: 16px/1.6 Inter, Arial, sans-serif;
+      background: linear-gradient(180deg,#f6efe7 0%,#fbf7f1 46%,#f2e9df 100%);
+      font: 16px/1.6 Arial, Helvetica, sans-serif;
     }
-    body::before {
-      content: "";
-      position: fixed;
-      inset: 0;
-      z-index: -1;
-      opacity: .26;
-      background-image: radial-gradient(rgba(76,51,34,.18) .6px, transparent .7px);
-      background-size: 7px 7px;
-      pointer-events: none;
-    }
+    img { display: block; width: 100%; }
+    button, a { font: inherit; }
     a { color: inherit; }
-    img { display: block; max-width: 100%; }
-    .topbar {
-      position: fixed;
-      inset: 0 0 auto;
-      z-index: 100;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 24px;
-      padding: 17px clamp(20px, 4vw, 54px);
-      background: rgba(250,246,239,.78);
-      border-bottom: 1px solid rgba(70,48,33,.08);
-      backdrop-filter: blur(16px);
-    }
-    .brand { font-family: Georgia, serif; font-size: 19px; letter-spacing: .04em; text-decoration: none; }
-    .nav { display: flex; gap: 24px; }
-    .nav a { color: var(--muted); font-size: 14px; font-weight: 700; text-decoration: none; }
 
     .hero {
-      position: relative;
       min-height: 100svh;
+      padding: 48px clamp(16px,4vw,60px);
       display: grid;
       place-items: center;
-      overflow: hidden;
-      padding: 120px 24px 75px;
       background:
-        radial-gradient(circle at 50% 45%, rgba(255,251,244,.98) 0 24%, rgba(247,238,224,.88) 52%, rgba(220,196,161,.58) 100%),
-        linear-gradient(135deg, #ecdfca, #f8f2e8);
+        linear-gradient(rgba(239,222,201,.04),rgba(239,222,201,.04)),
+        url("assets/back-to-english-background.png") center/cover;
     }
-    .hero-copy {
-      position: relative;
-      z-index: 5;
-      width: min(720px, 82vw);
-      padding: clamp(30px, 5vw, 58px);
+    .hero-box {
+      width: min(900px,96vw);
+      padding: clamp(38px,6vw,72px) clamp(26px,6vw,76px);
       text-align: center;
-      background: rgba(250,244,233,.74);
-      border: 1px solid rgba(79,54,36,.13);
-      border-radius: 4px;
-      box-shadow: 0 28px 80px rgba(70,45,27,.13);
-      backdrop-filter: blur(10px);
+      background: rgba(255,252,247,.84);
+      border: 1px solid rgba(91,62,44,.13);
+      border-radius: 34px;
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(15px);
+      animation: arrive .8s ease both;
     }
-    .eyebrow { margin: 0 0 20px; color: var(--muted); font-size: 13px; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; }
-    h1 { margin: 0; font: 400 clamp(50px, 7.4vw, 98px)/.92 Georgia, serif; letter-spacing: .025em; }
-    .script { display: block; margin-top: 20px; color: var(--rust); font: 400 clamp(35px, 5vw, 62px)/1 "Segoe Script", cursive; letter-spacing: -.03em; transform: rotate(-2deg); }
-    .hero-description { max-width: 580px; margin: 27px auto 0; color: #5f5046; font-size: clamp(17px, 2vw, 22px); }
-    .tags { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin-top: 25px; }
-    .tag { padding: 7px 13px; background: rgba(255,252,247,.72); border: 1px solid var(--line); border-radius: 99px; color: #5c4c42; font-size: 13px; font-weight: 700; }
-    .hero-button { display: inline-flex; align-items: center; gap: 10px; margin-top: 28px; padding: 14px 23px; color: white; background: var(--rust); border-radius: 99px; font-weight: 800; text-decoration: none; box-shadow: 0 12px 25px rgba(155,82,45,.24); }
-    .hero-button:hover { background: var(--rust-dark); transform: translateY(-2px); }
+    @keyframes arrive { from { opacity: 0; transform: translateY(14px); } }
+    .hero-brand { margin: 0 0 24px; color: #6f5f54; font-size: clamp(14px,1.5vw,18px); font-weight: 700; letter-spacing: .18em; text-transform: uppercase; }
+    h1 { margin: 0; font: 400 clamp(52px,8vw,106px)/.95 Georgia,"Times New Roman",serif; letter-spacing: .02em; }
+    .hero-script { display: block; margin-top: 22px; color: var(--terracotta); font: 400 clamp(38px,5.5vw,70px)/1 "Segoe Script","Bradley Hand",cursive; }
+    .hero-copy { max-width: 700px; margin: 30px auto 0; color: #65554b; font-size: clamp(19px,2.2vw,25px); line-height: 1.55; }
+    .hero-tags { margin-top: 30px; display: flex; flex-wrap: wrap; justify-content: center; gap: 14px; }
+    .hero-tag { min-width: 138px; padding: 14px 22px; color: #4e3d34; background: white; border: 1px solid rgba(81,56,40,.11); border-radius: 15px; box-shadow: 0 9px 22px rgba(77,49,30,.09); font-size: clamp(15px,1.5vw,18px); font-weight: 700; letter-spacing: .035em; text-align: center; }
+    .explore-button { min-height: 58px; margin-top: 36px; padding: 15px 29px; display: inline-flex; align-items: center; justify-content: center; color: white; background: var(--terracotta); border-radius: 999px; box-shadow: 0 15px 32px rgba(149,72,42,.28); font-size: 18px; font-weight: 800; text-decoration: none; transition: transform .2s,background .2s; }
+    .explore-button:hover { transform: translateY(-3px); background: var(--terracotta-dark); }
 
-    .polaroid {
-      --rot: 0deg;
-      --drift: 0px;
-      position: absolute;
-      z-index: 2;
-      width: clamp(125px, 16vw, 240px);
-      padding: 9px 9px 30px;
-      background: #fffdf8;
-      box-shadow: 0 15px 32px rgba(60,39,24,.24);
-      transform: translate3d(0, var(--drift), 0) rotate(var(--rot));
-      transition: transform .12s linear;
-      will-change: transform;
-    }
-    .polaroid-inner { animation: breathe 8s ease-in-out infinite alternate; }
-    .polaroid:nth-of-type(even) .polaroid-inner { animation-delay: -3.5s; animation-duration: 10s; }
-    .photo {
-      aspect-ratio: 4/3;
-      display: grid;
-      place-items: center;
-      overflow: hidden;
-      color: rgba(255,255,255,.95);
-      text-shadow: 0 2px 10px rgba(45,30,20,.25);
-      font-size: clamp(35px, 5vw, 70px);
-    }
-    .photo small { position: absolute; left: 17px; bottom: 8px; color: #6a594e; font: 12px "Segoe Script", cursive; text-shadow: none; }
-    .p1 { left: -2%; top: 14%; --rot: -8deg; } .p1 .photo { background: linear-gradient(145deg,#76b9c5,#ead2a0); }
-    .p2 { left: 5%; bottom: 5%; --rot: 7deg; } .p2 .photo { background: linear-gradient(145deg,#dfb17f,#795d45); }
-    .p3 { left: 24%; top: 7%; --rot: -4deg; } .p3 .photo { background: linear-gradient(145deg,#e8cba4,#9c7b62); }
-    .p4 { right: 25%; top: 6%; --rot: 4deg; } .p4 .photo { background: linear-gradient(145deg,#9ec5ce,#e9d2af); }
-    .p5 { right: 5%; top: 14%; --rot: 8deg; } .p5 .photo { background: linear-gradient(145deg,#94b9bc,#c87b52); }
-    .p6 { right: -2%; bottom: 8%; --rot: -5deg; } .p6 .photo { background: linear-gradient(145deg,#637661,#e3a66a); }
-    .p7 { left: 24%; bottom: -8%; --rot: 5deg; } .p7 .photo { background: linear-gradient(145deg,#79aab4,#e8cfa2); }
-    .p8 { right: 24%; bottom: -7%; --rot: -4deg; } .p8 .photo { background: linear-gradient(145deg,#d7c5ac,#b99b73); }
-    @keyframes breathe { from { translate: 0 -2px; } to { translate: 0 3px; } }
-    .scroll-note { position: absolute; z-index: 6; bottom: 20px; left: 50%; transform: translateX(-50%); color: #6c5b50; font-size: 11px; font-weight: 900; letter-spacing: .18em; text-transform: uppercase; }
-    .scroll-note::after { content: "↓"; display: block; margin-top: 2px; font-size: 18px; animation: bounce 1.8s infinite; }
-    @keyframes bounce { 50% { transform: translateY(5px); } }
+    .intro { padding: clamp(90px,10vw,140px) 24px 60px; }
+    .intro-inner { width: min(980px,100%); margin: auto; text-align: center; }
+    .section-label { margin: 0 0 18px; color: var(--terracotta); font-size: 14px; font-weight: 800; letter-spacing: .18em; text-transform: uppercase; }
+    .intro h2, .activities-title { margin: 0; font: 400 clamp(43px,5.5vw,76px)/1.06 Georgia,"Times New Roman",serif; }
+    .intro-copy { max-width: 840px; margin: 27px auto 0; color: var(--muted); font-size: clamp(19px,2.1vw,24px); line-height: 1.72; }
 
-    .intro { padding: 105px 24px 55px; text-align: center; }
-    .inner { width: min(1180px, 100%); margin: auto; }
-    .kicker { margin: 0 0 13px; color: var(--rust-dark); font-size: 12px; font-weight: 900; letter-spacing: .19em; text-transform: uppercase; }
-    h2 { margin: 0; font: 400 clamp(40px, 5vw, 68px)/1.04 Georgia, serif; }
-    .intro-copy { max-width: 790px; margin: 22px auto 0; color: var(--muted); font-size: clamp(18px,2vw,22px); }
+    .activities { padding: 55px clamp(18px,4vw,60px) 120px; }
+    .activities-inner { width: min(1480px,100%); margin: auto; }
+    .activities-header { margin-bottom: 46px; text-align: center; }
+    .activity-grid { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 34px; }
+    .activity-card { overflow: hidden; display: flex; flex-direction: column; background: var(--paper); border: 1px solid var(--line); border-radius: 31px; box-shadow: var(--shadow); transition: transform .25s,box-shadow .25s; }
+    .activity-card:hover { transform: translateY(-6px); box-shadow: 0 32px 75px rgba(78,50,31,.17); }
+    .activity-preview { position: relative; height: clamp(330px,38vw,510px); overflow: hidden; background: #d6c1af; }
+    .activity-preview img { height: 100%; object-fit: cover; transition: transform .55s; }
+    .activity-card:hover .activity-preview img { transform: scale(1.025); }
+    .activity-preview::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg,rgba(48,31,22,.03),rgba(48,31,22,.09)); pointer-events: none; }
+    .activity-number { position: absolute; top: 22px; left: 24px; z-index: 3; padding: 11px 17px; color: #3b2e27; background: rgba(255,252,247,.9); border: 1px solid rgba(77,53,38,.09); border-radius: 999px; backdrop-filter: blur(8px); font-size: 14px; font-weight: 850; letter-spacing: .12em; text-transform: uppercase; }
+    .activity-content { flex: 1; padding: 38px clamp(28px,4vw,43px) 40px; display: flex; flex-direction: column; }
+    .activity-type { margin-bottom: 17px; color: var(--terracotta-dark); font-size: 15px; font-weight: 850; letter-spacing: .15em; text-transform: uppercase; }
+    .activity-card h3 { margin: 0; font: 400 clamp(42px,4.6vw,67px)/1.04 Georgia,"Times New Roman",serif; }
+    .activity-description { margin: 22px 0 0; color: var(--muted); font-size: clamp(18px,1.7vw,22px); line-height: 1.65; }
+    .activity-divider { height: 1px; margin-top: 30px; background: rgba(79,55,40,.13); }
+    .how-toggle { width: 100%; padding: 26px 0 8px; display: flex; align-items: center; gap: 12px; color: #8f472c; background: transparent; border: 0; cursor: pointer; font-size: 20px; font-weight: 800; text-align: left; }
+    .how-arrow { display: inline-block; transition: transform .25s; }
+    .how-toggle.open .how-arrow { transform: rotate(90deg); }
+    .instructions { display: grid; grid-template-rows: 0fr; transition: grid-template-rows .32s; }
+    .instructions.open { grid-template-rows: 1fr; }
+    .instructions-inner { overflow: hidden; }
+    .instructions-box { margin-top: 12px; padding: 22px 23px; background: #f5ebe2; border: 1px solid rgba(91,62,43,.11); border-radius: 19px; }
+    .instructions-box ol { margin: 0; padding-left: 24px; display: grid; gap: 11px; }
+    .instructions-box li { padding-left: 3px; color: #5a4a41; font-size: 17px; line-height: 1.55; }
+    .start-button { min-height: 54px; margin-top: 26px; padding: 14px 23px; display: inline-flex; align-items: center; justify-content: center; align-self: flex-start; color: white; background: var(--ink); border-radius: 999px; font-size: 17px; font-weight: 800; text-decoration: none; transition: transform .2s,background .2s; }
+    .start-button:hover { transform: translateY(-2px); background: var(--terracotta-dark); }
 
-    .activities { padding: 60px 24px 120px; }
-    .activities-head { margin-bottom: 34px; text-align: center; }
-    .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; align-items: start; }
-    .card { overflow: hidden; display: flex; flex-direction: column; min-height: 720px; background: rgba(255,252,247,.84); border: 1px solid var(--line); border-radius: 25px; box-shadow: var(--shadow); transition: transform .25s, box-shadow .25s; }
-    .card:hover { transform: translateY(-6px); box-shadow: 0 32px 70px rgba(70,45,27,.18); }
-    .preview { position: relative; height: 330px; display: grid; place-items: center; overflow: hidden; }
-    .preview-holiday { background: linear-gradient(145deg,#eac39c,#b86d4a); }
-    .preview-reality { background: linear-gradient(145deg,#99b5b2,#d69572); }
-    .preview-placeholder { text-align: center; color: white; text-shadow: 0 3px 15px rgba(40,25,15,.25); }
-    .preview-placeholder b { display: block; font-size: 70px; }
-    .preview-placeholder span { font: 19px Georgia, serif; letter-spacing: .06em; }
-    .number { position: absolute; top: 18px; left: 18px; padding: 7px 12px; background: rgba(255,250,242,.86); border-radius: 99px; font-size: 11px; font-weight: 900; letter-spacing: .12em; text-transform: uppercase; }
-    .card-body { flex: 1; display: flex; flex-direction: column; padding: 30px 32px 33px; }
-    .type { color: var(--rust-dark); font-size: 11px; font-weight: 900; letter-spacing: .16em; text-transform: uppercase; }
-    h3 { margin: 8px 0 0; font: 400 clamp(34px,4vw,47px)/1.08 Georgia, serif; }
-    .card-description { margin: 16px 0 0; color: var(--muted); font-size: 17px; }
-    details { margin-top: 21px; padding-top: 18px; border-top: 1px solid var(--line); }
-    summary { cursor: pointer; color: var(--rust-dark); font-weight: 900; }
-    ol { margin: 13px 0 0; padding-left: 21px; color: #5d4e45; }
-    li + li { margin-top: 6px; }
-    .card-footer { margin-top: auto; padding-top: 26px; display: flex; align-items: center; justify-content: space-between; gap: 15px; }
-    .level { color: var(--muted); font-size: 13px; font-weight: 700; }
-    .play { padding: 12px 18px; color: white; background: var(--ink); border-radius: 99px; font-weight: 900; text-decoration: none; white-space: nowrap; }
-    .play:hover { background: var(--rust-dark); }
-    .coming { grid-column: 1/-1; display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 35px; padding: 42px; background: linear-gradient(135deg,rgba(124,137,116,.17),rgba(189,107,63,.13)); border: 1px solid var(--line); border-radius: 25px; }
-    .coming h3 { margin: 0; }
-    .coming p { max-width: 680px; color: var(--muted); }
-    .stamp { display: grid; place-items: center; width: 160px; height: 160px; border: 2px solid rgba(117,80,54,.32); border-radius: 50%; color: #6c584a; font: 25px/1.1 Georgia, serif; text-align: center; transform: rotate(5deg); }
-    footer { padding: 40px 24px; border-top: 1px solid var(--line); color: var(--muted); text-align: center; }
-    footer strong { color: var(--ink); font: 18px Georgia, serif; }
-
-    @media (max-width: 920px) {
-      .hero-copy { width: min(650px, 90vw); }
-      .p3, .p4, .p7, .p8 { display: none; }
-      .grid { grid-template-columns: 1fr; }
-      .coming { grid-column: auto; }
+    .coming-card { grid-column: 1/-1; min-height: 330px; padding: clamp(36px,5vw,62px); display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 40px; background: linear-gradient(135deg,rgba(172,186,177,.23),rgba(214,167,133,.22)); border: 1px solid var(--line); border-radius: 31px; box-shadow: var(--shadow); }
+    .coming-card h3 { margin: 0; font: 400 clamp(41px,4.6vw,67px)/1.05 Georgia,"Times New Roman",serif; }
+    .coming-card p { max-width: 720px; margin: 20px 0 0; color: var(--muted); font-size: 20px; line-height: 1.65; }
+    .coming-badge { width: 180px; height: 180px; display: grid; place-items: center; color: #67584e; background: rgba(255,252,247,.55); border: 1px solid rgba(82,59,44,.2); border-radius: 50%; font: 27px/1.16 Georgia,"Times New Roman",serif; text-align: center; transform: rotate(4deg); }
+    footer { padding: 52px 24px; text-align: center; background: rgba(240,228,215,.74); border-top: 1px solid rgba(77,52,38,.1); }
+    .footer-link { display: inline-block; font: clamp(23px,2.6vw,32px) Georgia,"Times New Roman",serif; text-decoration: none; }
+    .footer-link:hover { color: var(--terracotta-dark); }
+    .footer-note { margin: 13px 0 0; color: var(--muted); font-size: 15px; }
+    @media (max-width:960px) { .activity-grid { grid-template-columns:1fr; } .coming-card { grid-column:auto; } .activity-preview { height:430px; } }
+    @media (max-width:720px) {
+      .hero { min-height:auto; padding:28px 13px; }
+      .hero-box { width:100%; padding:39px 21px; border-radius:27px; }
+      .hero-tags { display:grid; grid-template-columns:1fr; }
+      .hero-tag,.explore-button,.start-button { width:100%; }
+      .activity-preview { height:300px; }
+      .activity-content { padding:31px 24px 34px; }
+      .coming-card { grid-template-columns:1fr; }
+      .coming-badge { width:140px; height:140px; font-size:22px; }
     }
-    @media (max-width: 650px) {
-      .topbar { padding: 14px 17px; } .nav a:first-child { display: none; }
-      .hero { padding-inline: 14px; } .hero-copy { width: 100%; padding: 30px 20px; }
-      .polaroid { opacity: .48; width: 125px; } .p1,.p2 { left: -45px; } .p5,.p6 { right: -45px; }
-      .preview { height: 260px; } .card-body { padding: 26px 23px 28px; }
-      .card-footer { align-items: stretch; flex-direction: column; } .play { text-align: center; }
-      .coming { grid-template-columns: 1fr; padding: 30px 24px; } .stamp { width: 125px; height: 125px; font-size: 20px; }
-    }
-    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } .polaroid-inner,.scroll-note::after { animation: none; } }
+    @media (prefers-reduced-motion:reduce) { html { scroll-behavior:auto; } .hero-box { animation:none; } }
   </style>
 </head>
 <body>
-  <header class="topbar">
-    <a class="brand" href="#top">Maria Tokareva Teaching</a>
-    <nav class="nav" aria-label="Main navigation"><a href="#about">About</a><a href="#activities">Activities</a></nav>
-  </header>
-
   <main>
     <section class="hero" id="top">
-      <div class="polaroid p1" data-depth=".7"><div class="polaroid-inner"><div class="photo">🏝️<small>slow mornings</small></div></div></div>
-      <div class="polaroid p2" data-depth="-.5"><div class="polaroid-inner"><div class="photo">☕<small>workation</small></div></div></div>
-      <div class="polaroid p3" data-depth=".35"><div class="polaroid-inner"><div class="photo">🗼<small>Paris, 2026</small></div></div></div>
-      <div class="polaroid p4" data-depth="-.45"><div class="polaroid-inner"><div class="photo">🍹<small>summer taste</small></div></div></div>
-      <div class="polaroid p5" data-depth=".6"><div class="polaroid-inner"><div class="photo">🚗<small>road trip</small></div></div></div>
-      <div class="polaroid p6" data-depth="-.65"><div class="polaroid-inner"><div class="photo">🏕️<small>one more night</small></div></div></div>
-      <div class="polaroid p7" data-depth=".4"><div class="polaroid-inner"><div class="photo">🌊<small>coastal road</small></div></div></div>
-      <div class="polaroid p8" data-depth="-.3"><div class="polaroid-inner"><div class="photo">🧳<small>back home</small></div></div></div>
-
-      <div class="hero-copy">
-        <p class="eyebrow">Maria Tokareva Teaching</p>
-        <h1>BACK TO ENGLISH <span class="script">Let’s Catch Up!</span></h1>
-        <p class="hero-description">Ready-to-use speaking activities for your first lessons after the holidays.</p>
-        <div class="tags"><span class="tag">Adults</span><span class="tag">A2–B1</span><span class="tag">Speaking</span><span class="tag">Online lessons</span></div>
-        <a class="hero-button" href="#activities">Explore activities ↓</a>
+      <div class="hero-box">
+        <p class="hero-brand">Maria Tokareva Teaching</p>
+        <h1>BACK TO ENGLISH <span class="hero-script">Let’s Catch Up!</span></h1>
+        <p class="hero-copy">Ready-to-use speaking activities for your first lessons after the holidays.</p>
+        <div class="hero-tags"><div class="hero-tag">Teens–Adults</div><div class="hero-tag">A2–B1</div><div class="hero-tag">Speaking</div></div>
+        <a class="explore-button" href="#activities">Explore activities ↓</a>
       </div>
-      <div class="scroll-note">Scroll to explore</div>
     </section>
 
-    <section class="intro" id="about">
-      <div class="inner">
-        <p class="kicker">First lessons after the break</p>
+    <section class="intro">
+      <div class="intro-inner">
+        <p class="section-label">First lessons after the break</p>
         <h2>Start with a real conversation</h2>
-        <p class="intro-copy">A warm collection of visual activities that helps adult learners reconnect, share holiday stories and start speaking naturally from the very first minutes of the lesson.</p>
+        <p class="intro-copy">A warm collection of visual activities that helps learners reconnect, share holiday stories and start speaking naturally from the very first minutes of the lesson.</p>
       </div>
     </section>
 
     <section class="activities" id="activities">
-      <div class="inner">
-        <header class="activities-head"><p class="kicker">Choose an activity</p><h2>Let’s start talking</h2></header>
-        <div class="grid">
-          <article class="card">
-            <div class="preview preview-holiday"><span class="number">Activity 01</span><div class="preview-placeholder"><b>🏖️</b><span>Your game image here</span></div></div>
-            <div class="card-body">
-              <div class="type">Storytelling · Discussion</div>
+      <div class="activities-inner">
+        <header class="activities-header"><p class="section-label">Choose an activity</p><h2 class="activities-title">Let’s start talking</h2></header>
+        <div class="activity-grid">
+          <article class="activity-card">
+            <div class="activity-preview"><img src="assets/holiday-stories-preview.png" alt="Starfish heart on sand for Holiday Stories"><span class="activity-number">Activity 01</span></div>
+            <div class="activity-content">
+              <div class="activity-type">Storytelling · Discussion</div>
               <h3>Holiday Stories</h3>
-              <p class="card-description">Eight visual prompts for sharing summer memories, building longer answers and asking natural follow-up questions.</p>
-              <details><summary>How to play</summary><ol><li>Choose a speaking time: 1, 3 or 5 minutes.</li><li>Reveal any card and discuss the image or story.</li><li>Start the timer for the student’s answer.</li><li>Tap the heart when the story is finished and move to the next card.</li></ol></details>
-              <div class="card-footer"><span class="level">Adults · A2–B1 · 10–20 min</span><a class="play" href="games/holiday-stories.html">Start activity →</a></div>
+              <p class="activity-description">Eight visual prompts for sharing summer memories, building longer answers and asking natural follow-up questions.</p>
+              <div class="activity-divider"></div>
+              <button class="how-toggle" type="button" aria-expanded="false"><span class="how-arrow">▶</span><span>How to play</span></button>
+              <div class="instructions"><div class="instructions-inner"><div class="instructions-box"><ol><li>Choose a speaking time: 1, 3 or 5 minutes.</li><li>Reveal any card and discuss the image or story.</li><li>Start the timer for the student’s answer.</li><li>Tap the heart when the story is finished and move to the next card.</li></ol></div></div></div>
+              <a class="start-button" href="games/holiday-stories.html">Start activity →</a>
             </div>
           </article>
 
-          <article class="card">
-            <div class="preview preview-reality"><span class="number">Activity 02</span><div class="preview-placeholder"><b>📸</b><span>Your game image here</span></div></div>
-            <div class="card-body">
-              <div class="type">Prediction · Discussion</div>
+          <article class="activity-card">
+            <div class="activity-preview"><img src="assets/instagram-vs-reality-preview.png" alt="Vacation polaroid collage for Instagram versus Reality"><span class="activity-number">Activity 02</span></div>
+            <div class="activity-content">
+              <div class="activity-type">Prediction · Discussion</div>
               <h3>Instagram vs Reality</h3>
-              <p class="card-description">Twelve holiday situations for describing perfect expectations, predicting problems and revealing the funny reality.</p>
-              <details><summary>How to play</summary><ol><li>Choose a card or use Random card.</li><li>Describe the expectation and predict what might go wrong.</li><li>Reveal reality and compare it with your prediction.</li><li>Rate how relatable it is and answer the personal questions.</li></ol></details>
-              <div class="card-footer"><span class="level">Adults · A2–B1 · 15–25 min</span><a class="play" href="games/instagram-vs-reality.html">Start activity →</a></div>
+              <p class="activity-description">Twelve holiday situations for describing perfect expectations, predicting problems and revealing the funny reality.</p>
+              <div class="activity-divider"></div>
+              <button class="how-toggle" type="button" aria-expanded="false"><span class="how-arrow">▶</span><span>How to play</span></button>
+              <div class="instructions"><div class="instructions-inner"><div class="instructions-box"><ol><li>Choose a card or use Random card.</li><li>Describe the expectation and predict what might go wrong.</li><li>Reveal reality and compare it with your prediction.</li><li>Rate how relatable it is and answer the personal questions.</li></ol></div></div></div>
+              <a class="start-button" href="games/instagram-vs-reality.html">Start activity →</a>
             </div>
           </article>
 
-          <section class="coming">
-            <div><p class="kicker">Activity 03</p><h3>A new activity is coming</h3><p>The third lesson starter will continue the same warm visual story and will appear here when it is ready.</p></div>
-            <div class="stamp">COMING<br>SOON</div>
+          <section class="coming-card">
+            <div><p class="section-label">Activity 03</p><h3>A new activity is coming</h3><p>Another visual speaking activity for your first lessons after the holidays will be added here soon.</p></div>
+            <div class="coming-badge">Coming<br>soon</div>
           </section>
         </div>
       </div>
     </section>
   </main>
 
-  <footer><strong>Maria Tokareva Teaching</strong><br>Communicative speaking activities for adult learners.</footer>
-
+  <footer><a class="footer-link" href="https://vk.ru/maria_tokareva_teaching" target="_blank" rel="noopener noreferrer">Maria Tokareva Teaching</a><p class="footer-note">Communicative materials for meaningful English lessons.</p></footer>
   <script>
-    const polaroids = [...document.querySelectorAll('.polaroid')];
-    let ticking = false;
-    function movePolaroids() {
-      const progress = Math.min(window.scrollY / Math.max(innerHeight, 1), 1);
-      polaroids.forEach(card => {
-        const depth = Number(card.dataset.depth || 0);
-        card.style.setProperty('--drift', `${(progress * depth * 10).toFixed(2)}px`);
+    document.querySelectorAll('.how-toggle').forEach(toggle => {
+      toggle.addEventListener('click', () => {
+        const instructions = toggle.nextElementSibling;
+        const open = instructions.classList.toggle('open');
+        toggle.classList.toggle('open', open);
+        toggle.setAttribute('aria-expanded', String(open));
+        toggle.querySelector('span:last-child').textContent = open ? 'Hide instructions' : 'How to play';
       });
-      ticking = false;
-    }
-    addEventListener('scroll', () => {
-      if (!ticking) { requestAnimationFrame(movePolaroids); ticking = true; }
-    }, { passive: true });
-    movePolaroids();
+    });
   </script>
 </body>
 </html>
