@@ -53,8 +53,8 @@
     h1 { margin: 0; font: 400 clamp(46px,5vw,72px)/.92 Georgia,"Times New Roman",serif; letter-spacing: .02em; }
     .hero-script { display: block; margin-top: 18px; color: var(--terracotta); font: 400 clamp(28px,2.6vw,46px)/1 "Segoe Script","Bradley Hand",cursive; }
     .hero-copy { max-width: 650px; margin: 24px auto 0; color: #65554b; font-size: clamp(17px,1.2vw,22px); line-height: 1.55; }
-    .hero-tags { margin-top: 24px; display: flex; flex-wrap: wrap; justify-content: center; gap: 11px; }
-    .hero-tag { min-width: 110px; padding: 11px 18px; color: #4e3d34; background: white; border: 1px solid rgba(81,56,40,.11); border-radius: 13px; box-shadow: 0 9px 22px rgba(77,49,30,.09); font-size: clamp(14px,1.2vw,15px); font-weight: 700; letter-spacing: .035em; text-align: center; }
+    .hero-info { width: fit-content; max-width: 100%; margin: 24px auto 0; padding: 10px 22px; display: flex; align-items: center; justify-content: center; gap: 13px; color: #62534a; background: rgba(255,255,255,.82); border: 1px solid rgba(81,56,40,.09); border-radius: 999px; font-size: clamp(14px,1.2vw,15px); font-weight: 650; letter-spacing: .025em; white-space: nowrap; }
+    .hero-info-dot { color: #b29c8d; font-size: 16px; }
     .explore-button { min-height: 46px; margin-top: 28px; padding: 12px 23px; display: inline-flex; align-items: center; justify-content: center; color: white; background: var(--terracotta); border-radius: 999px; box-shadow: 0 15px 32px rgba(149,72,42,.28); font-size: 15px; font-weight: 800; text-decoration: none; transition: transform .2s,background .2s; }
     .explore-button:hover { transform: translateY(-3px); background: var(--terracotta-dark); }
 
@@ -105,7 +105,7 @@
       h1 { font-size:clamp(42px,8vh,64px); }
       .hero-script { margin-top:12px; font-size:clamp(26px,5vh,38px); }
       .hero-copy { margin-top:18px; font-size:17px; }
-      .hero-tags { margin-top:18px; }
+      .hero-info { margin-top:18px; }
       .explore-button { margin-top:20px; }
     }
     @media (max-width:1180px) { .activity-grid { grid-template-columns:repeat(2,minmax(0,1fr)); } }
@@ -113,8 +113,8 @@
     @media (max-width:720px) {
       .hero { min-height:auto; padding:28px 13px; }
       .hero-box { width:100%; padding:39px 21px; border-radius:27px; }
-      .hero-tags { display:grid; grid-template-columns:1fr; }
-      .hero-tag,.explore-button { width:100%; }
+      .hero-info { width:100%; padding-inline:12px; gap:8px; font-size:13px; }
+      .explore-button { width:100%; }
       .activity-preview { height:240px; }
       .activity-content { padding:24px 20px 25px; }
     }
@@ -128,7 +128,7 @@
         <p class="hero-brand">Maria Tokareva Teaching</p>
         <h1>BACK TO ENGLISH <span class="hero-script">Let’s Catch Up!</span></h1>
         <p class="hero-copy">Ready-to-use speaking activities for your first lessons<br>after the <strong>summer</strong> holidays.</p>
-        <div class="hero-tags"><div class="hero-tag">Teens–Adults</div><div class="hero-tag">A2–B1</div><div class="hero-tag">Speaking</div></div>
+        <div class="hero-info" aria-label="Audience: Teens to Adults. Level: A2 to B1. Skill: Speaking."><span>Teens–Adults</span><span class="hero-info-dot" aria-hidden="true">·</span><span>A2–B1</span><span class="hero-info-dot" aria-hidden="true">·</span><span>Speaking</span></div>
         <a class="explore-button" href="#activities">Explore activities ↓</a>
       </div>
     </section>
