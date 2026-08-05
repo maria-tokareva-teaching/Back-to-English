@@ -53,8 +53,11 @@
     h1 { margin: 0; font: 400 clamp(46px,5vw,72px)/.92 Georgia,"Times New Roman",serif; letter-spacing: .02em; }
     .hero-script { display: block; margin-top: 18px; color: var(--terracotta); font: 400 clamp(28px,2.6vw,46px)/1 "Segoe Script","Bradley Hand",cursive; }
     .hero-copy { max-width: 650px; margin: 24px auto 0; color: #65554b; font-size: clamp(17px,1.2vw,22px); line-height: 1.55; }
-    .hero-info { width: fit-content; max-width: 100%; margin: 24px auto 0; padding: 10px 22px; display: flex; align-items: center; justify-content: center; gap: 13px; color: #62534a; background: rgba(255,255,255,.82); border: 1px solid rgba(81,56,40,.09); border-radius: 999px; font-size: clamp(14px,1.2vw,15px); font-weight: 650; letter-spacing: .025em; white-space: nowrap; }
-    .hero-info-dot { color: #b29c8d; font-size: 16px; }
+    .hero-info { width: fit-content; max-width: 100%; margin: 24px auto 0; display: flex; align-items: center; justify-content: center; gap: 9px; color: #fffaf5; font-size: clamp(13px,1.15vw,15px); font-weight: 700; letter-spacing: .035em; white-space: nowrap; }
+    .hero-info > span:not(.hero-info-dot) { padding: 8px 15px 9px; background: linear-gradient(100deg,#49372f 0%,#5d463b 52%,#423129 100%); clip-path: polygon(3% 12%,97% 3%,100% 82%,94% 94%,5% 89%,0 21%); box-shadow: 0 8px 18px rgba(60,42,33,.16); }
+    .hero-info > span:nth-child(3) { transform: rotate(-1deg); }
+    .hero-info > span:nth-child(5) { transform: rotate(.8deg); }
+    .hero-info-dot { display:none; }
     .explore-button { min-height: 46px; margin-top: 28px; padding: 12px 23px; display: inline-flex; align-items: center; justify-content: center; color: white; background: var(--terracotta); border-radius: 999px; box-shadow: 0 15px 32px rgba(149,72,42,.28); font-size: 15px; font-weight: 800; text-decoration: none; transition: transform .2s,background .2s; }
     .explore-button:hover { transform: translateY(-3px); background: var(--terracotta-dark); }
 
@@ -113,7 +116,8 @@
     @media (max-width:720px) {
       .hero { min-height:auto; padding:28px 13px; }
       .hero-box { width:100%; padding:39px 21px; border-radius:27px; }
-      .hero-info { width:100%; padding-inline:12px; gap:8px; font-size:13px; }
+      .hero-info { width:100%; gap:5px; font-size:12px; }
+      .hero-info > span:not(.hero-info-dot) { padding:7px 10px 8px; }
       .explore-button { width:100%; }
       .activity-preview { height:240px; }
       .activity-content { padding:24px 20px 25px; }
