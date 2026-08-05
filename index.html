@@ -58,7 +58,7 @@
     .hero-info > span:not(.hero-info-dot)::after { content:""; position:absolute; left:-5%; right:-5%; bottom:2px; height:6px; z-index:-1; background:linear-gradient(90deg,transparent 0%,rgba(180,79,44,.5) 7%,rgba(180,79,44,.62) 52%,rgba(180,79,44,.42) 94%,transparent 100%); -webkit-mask-image:radial-gradient(ellipse 100% 70% at 50% 50%,#000 42%,transparent 76%); mask-image:radial-gradient(ellipse 100% 70% at 50% 50%,#000 42%,transparent 76%); transform:rotate(-1.5deg); }
     .hero-info > span:nth-child(3)::after { transform:rotate(.8deg); }
     .hero-info > span:nth-child(5)::after { transform:rotate(-.4deg); }
-    .hero-info-dot { display:none; }
+    .hero-info-dot { display:inline-block;color:var(--terracotta);font-size:7px;line-height:1;transform:translateY(-1px); }
     .explore-button { min-height: 46px; margin-top: 28px; padding: 12px 23px; display: inline-flex; align-items: center; justify-content: center; color: white; background: var(--terracotta); border-radius: 999px; box-shadow: 0 15px 32px rgba(149,72,42,.28); font-size: 15px; font-weight: 800; text-decoration: none; transition: transform .2s,background .2s; }
     .explore-button:hover { transform: translateY(-3px); background: var(--terracotta-dark); }
 
@@ -133,7 +133,7 @@
         <p class="hero-brand">Maria Tokareva Teaching</p>
         <h1>BACK TO ENGLISH <span class="hero-script">Let’s Catch Up!</span></h1>
         <p class="hero-copy">Ready-to-use speaking activities for your first lessons<br>after the <strong>summer</strong> holidays.</p>
-        <div class="hero-info" aria-label="Audience: Teens to Adults. Level: A2 to B1. Skill: Speaking."><span>Teens–Adults</span><span class="hero-info-dot" aria-hidden="true">·</span><span>A2–B1</span><span class="hero-info-dot" aria-hidden="true">·</span><span>Speaking</span></div>
+        <div class="hero-info" aria-label="Audience: Teens to Adults. Level: A2 to B1. Skill: Speaking."><span>Teens–Adults</span><span class="hero-info-dot" aria-hidden="true">◆</span><span>A2–B1</span><span class="hero-info-dot" aria-hidden="true">◆</span><span>Speaking</span></div>
         <a class="explore-button" href="#activities">Explore activities ↓</a>
       </div>
     </section>
