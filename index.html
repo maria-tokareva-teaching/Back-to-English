@@ -53,10 +53,11 @@
     h1 { margin: 0; font: 400 clamp(46px,5vw,72px)/.92 Georgia,"Times New Roman",serif; letter-spacing: .02em; }
     .hero-script { display: block; margin-top: 18px; color: var(--terracotta); font: 400 clamp(28px,2.6vw,46px)/1 "Segoe Script","Bradley Hand",cursive; }
     .hero-copy { max-width: 650px; margin: 24px auto 0; color: #65554b; font-size: clamp(17px,1.2vw,22px); line-height: 1.55; }
-    .hero-info { width: fit-content; max-width: 100%; margin: 24px auto 0; display: flex; align-items: center; justify-content: center; gap: 9px; color: #fffaf5; font-size: clamp(13px,1.15vw,15px); font-weight: 700; letter-spacing: .035em; white-space: nowrap; }
-    .hero-info > span:not(.hero-info-dot) { padding: 8px 15px 9px; background: linear-gradient(100deg,#49372f 0%,#5d463b 52%,#423129 100%); clip-path: polygon(3% 12%,97% 3%,100% 82%,94% 94%,5% 89%,0 21%); box-shadow: 0 8px 18px rgba(60,42,33,.16); }
-    .hero-info > span:nth-child(3) { transform: rotate(-1deg); }
-    .hero-info > span:nth-child(5) { transform: rotate(.8deg); }
+    .hero-info { width: fit-content; max-width: 100%; margin: 24px auto 0; display: flex; align-items: center; justify-content: center; gap: 18px; color: #493a32; font-size: clamp(13px,1.15vw,15px); font-weight: 750; letter-spacing: .045em; white-space: nowrap; }
+    .hero-info > span:not(.hero-info-dot) { position:relative; padding:4px 3px 8px; }
+    .hero-info > span:not(.hero-info-dot)::after { content:""; position:absolute; left:-5%; right:-5%; bottom:2px; height:6px; z-index:-1; background:linear-gradient(90deg,transparent 0%,rgba(180,79,44,.5) 7%,rgba(180,79,44,.62) 52%,rgba(180,79,44,.42) 94%,transparent 100%); -webkit-mask-image:radial-gradient(ellipse 100% 70% at 50% 50%,#000 42%,transparent 76%); mask-image:radial-gradient(ellipse 100% 70% at 50% 50%,#000 42%,transparent 76%); transform:rotate(-1.5deg); }
+    .hero-info > span:nth-child(3)::after { transform:rotate(.8deg); }
+    .hero-info > span:nth-child(5)::after { transform:rotate(-.4deg); }
     .hero-info-dot { display:none; }
     .explore-button { min-height: 46px; margin-top: 28px; padding: 12px 23px; display: inline-flex; align-items: center; justify-content: center; color: white; background: var(--terracotta); border-radius: 999px; box-shadow: 0 15px 32px rgba(149,72,42,.28); font-size: 15px; font-weight: 800; text-decoration: none; transition: transform .2s,background .2s; }
     .explore-button:hover { transform: translateY(-3px); background: var(--terracotta-dark); }
@@ -116,8 +117,8 @@
     @media (max-width:720px) {
       .hero { min-height:auto; padding:28px 13px; }
       .hero-box { width:100%; padding:39px 21px; border-radius:27px; }
-      .hero-info { width:100%; gap:5px; font-size:12px; }
-      .hero-info > span:not(.hero-info-dot) { padding:7px 10px 8px; }
+      .hero-info { width:100%; gap:10px; font-size:12px; }
+      .hero-info > span:not(.hero-info-dot) { padding-inline:1px; }
       .explore-button { width:100%; }
       .activity-preview { height:240px; }
       .activity-content { padding:24px 20px 25px; }
