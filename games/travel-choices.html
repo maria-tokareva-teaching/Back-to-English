@@ -63,7 +63,7 @@
     .photo-wrap::after{display:none}
     .choice-letter{position:absolute;top:17px;left:17px;z-index:2;width:34px;height:34px;border-radius:50%;display:grid;place-items:center;background:rgba(255,253,248,.9);backdrop-filter:blur(8px);font:700 12px/1 Inter,sans-serif;letter-spacing:.08em;box-shadow:0 4px 15px rgba(20,15,12,.14)}
     .card-footer{height:138px;padding:18px 24px;display:flex;align-items:center;background:#fffdf9;border-top:1px solid rgba(100,75,55,.1)}
-    .label{width:100%;font-family:var(--serif);font-size:clamp(20px,1.75vw,28px);font-weight:600;line-height:1.12;color:#302721;text-align:justify;text-align-last:left}
+    .label{width:100%;font-family:var(--serif);font-size:clamp(20px,1.75vw,28px);font-weight:600;line-height:1.12;color:#302721;text-align:center}
     .select-label{flex:0 0 auto;color:var(--terracotta-dark);font-size:11px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;white-space:nowrap}
     .select-label::after{content:" →"}
     .or{display:flex;align-items:center;justify-content:center;gap:8px;color:#9b8775;font:700 11px/1 Inter,sans-serif;letter-spacing:.14em;text-transform:uppercase}
@@ -142,16 +142,16 @@
 
   <script>
     const rounds=[
-      {stem:"Would you rather stay…",a:"for 3 days in a luxury 5-star hotel",b:"for 1 month in a simple 1-star hotel",q1:"What would make your holiday unforgettable?",q2:"What comforts could you live without?"},
-      {stem:"Would you rather stay…",a:"in a private villa with no Wi-Fi",b:"in a city hotel with perfect Wi-Fi",q1:"Could you really disconnect for several days?",q2:"What would you use the internet for while travelling?"},
-      {stem:"Would you rather stay…",a:"in a tiny room with an amazing sea view",b:"in a huge room with no view at all",q1:"How much time do you usually spend in your hotel room?",q2:"What makes a hotel room comfortable for you?"},
-      {stem:"Would you rather travel…",a:"for 2 days by train",b:"for 5 hours by plane",q1:"What would you enjoy during the journey?",q2:"Does the journey matter as much as the destination?"},
+      {stem:"Would you rather stay for…",a:"3 days in a luxury 5-star hotel",b:"1 month in a simple 1-star hotel",q1:"What would make your holiday unforgettable?",q2:"What comforts could you live without?"},
+      {stem:"Would you rather stay in…",a:"a private villa with no Wi-Fi",b:"a city hotel with perfect Wi-Fi",q1:"Could you really disconnect for several days?",q2:"What would you use the internet for while travelling?"},
+      {stem:"Would you rather stay in…",a:"a tiny room with an amazing sea view",b:"a huge room with no view at all",q1:"How much time do you usually spend in your hotel room?",q2:"What makes a hotel room comfortable for you?"},
+      {stem:"Would you rather travel for…",a:"2 days by train",b:"5 hours by plane",q1:"What would you enjoy during the journey?",q2:"Does the journey matter as much as the destination?"},
       {stem:"Would you rather…",a:"drive yourself on a road trip",b:"join an organised bus tour",q1:"What are the biggest advantages of your choice?",q2:"Have you ever had a memorable road trip or guided tour?"},
       {stem:"Would you rather…",a:"spend every day at the beach",b:"go on a different excursion every day",q1:"Which day of this holiday would you remember years later? Why?",q2:"What would you probably learn or discover during this trip?"},
-      {stem:"Would you rather eat…",a:"at an all-you-can-eat hotel buffet every day",b:"at local cafés and restaurants every day",q1:"Do you usually eat familiar food or discover a place through its food?",q2:"What problems could happen if you always chose this option?"},
+      {stem:"Would you rather eat at…",a:"an all-you-can-eat hotel buffet every day",b:"local cafés and restaurants every day",q1:"Do you usually eat familiar food or discover a place through its food?",q2:"What problems could happen if you always chose this option?"},
       {stem:"Would you rather…",a:"explore one city really well",b:"visit five cities in one week",q1:"What would your perfect day on this trip look like?",q2:"What could go wrong with this travel plan?"},
       {stem:"Would you rather…",a:"travel with one backpack",b:"pack everything you might need",q1:"What three things would definitely be in your bag?",q2:"Have you ever packed something you never used?"},
-      {stem:"Would you rather spend your holiday…",a:"in 40°C heat every day",b:"in 15°C weather every day",q1:"What activities would you do in that weather?",q2:"How does the weather change your holiday?"},
+      {stem:"Would you rather spend your holiday in…",a:"40°C heat every day",b:"15°C weather every day",q1:"What activities would you do in that weather?",q2:"How does the weather change your holiday?"},
       {stem:"Would you rather lose…",a:"your suitcase",b:"your phone",q1:"Which problem would be easier to solve?",q2:"What problems would this cause during your trip?"},
       {stem:"Would you rather take…",a:"one 1-month holiday",b:"four 1-week holidays during the year",q1:"Which option would make you happier in the long term?",q2:"How do you usually feel after returning from holiday?"}
     ];
@@ -192,7 +192,7 @@
     function choose(card){
       audioContext().resume();clickSound();const side=card.dataset.side,rect=card.getBoundingClientRect();choices[current]={side,label:rounds[current][side],img:image(current,side)};burst(rect.left+rect.width/2,rect.top+rect.height/2);selectSound();stage.classList.add("leaving");setTimeout(()=>renderDetail(side),260)
     }
-    function renderDetail(side){const r=rounds[current],label=r[side],question=fullQuestion(r,side);$("#roundQuestion").textContent="";stage.className="stage detail";stage.innerHTML=`<article class="detail-card"><img class="detail-photo" src="${image(current,side)}" alt="${label}"><div class="detail-copy"><div class="detail-kicker">Your answer</div><h2 class="detail-title">${question}</h2><div class="detail-question"><span class="qnum">1</span><span>${r.q1}</span></div><div class="detail-question"><span class="qnum">2</span><span>${r.q2}</span></div><div class="detail-actions"><button class="detail-back" type="button">← Back to options</button><button class="detail-next" type="button">Next pair →</button></div></div></article>`;stage.querySelector(".detail-back").addEventListener("click",change);stage.querySelector(".detail-next").addEventListener("click",next)}
+    function renderDetail(side){const r=rounds[current],label=r[side];$("#roundQuestion").textContent="";stage.className="stage detail";stage.innerHTML=`<article class="detail-card"><img class="detail-photo" src="${image(current,side)}" alt="${label}"><div class="detail-copy"><div class="detail-kicker">Your answer</div><h2 class="detail-title">${label}</h2><div class="detail-question"><span class="qnum">1</span><span>${r.q1}</span></div><div class="detail-question"><span class="qnum">2</span><span>${r.q2}</span></div><div class="detail-actions"><button class="detail-back" type="button">← Back to options</button><button class="detail-next" type="button">Next pair →</button></div></div></article>`;stage.querySelector(".detail-back").addEventListener("click",change);stage.querySelector(".detail-next").addEventListener("click",next)}
     function change(e){e.stopPropagation();clickSound();choices[current]=undefined;stage.classList.add("leaving");setTimeout(render,220)}
     function next(e){e.stopPropagation();if(!choices[current])return;nextSound();stage.classList.add("leaving");setTimeout(()=>{if(current<rounds.length-1){current++;render();return}const missing=choices.findIndex(choice=>!choice);if(missing>-1){current=missing;render()}else finish()},330)}
     function burst(x,y){for(let i=0;i<18;i++){const p=document.createElement("i");p.className="spark";p.style.left=x+"px";p.style.top=y+"px";p.style.background=i%3===0?"#fff1c9":i%2?"#a55736":"#d9b98e";const a=Math.random()*Math.PI*2,d=45+Math.random()*100;p.style.setProperty("--dx",Math.cos(a)*d+"px");p.style.setProperty("--dy",Math.sin(a)*d+"px");document.body.appendChild(p);setTimeout(()=>p.remove(),850)}}
