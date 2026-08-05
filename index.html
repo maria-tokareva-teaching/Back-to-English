@@ -78,9 +78,9 @@
     .activity-number { position: absolute; top: 16px; left: 18px; z-index: 3; padding: 8px 13px; color: #3b2e27; background: rgba(255,252,247,.9); border: 1px solid rgba(77,53,38,.09); border-radius: 999px; backdrop-filter: blur(8px); font-size: 11px; font-weight: 850; letter-spacing: .12em; text-transform: uppercase; }
     .activity-content { flex: 1; padding: 24px 26px 26px; display: flex; flex-direction: column; }
     .activity-type { margin-bottom: 8px; color: var(--terracotta-dark); font-size: 11px; font-weight: 850; letter-spacing: .15em; text-transform: uppercase; }
-    .activity-card h3 { margin: 0; font: 400 clamp(30px,3.2vw,43px)/1.04 Georgia,"Times New Roman",serif; }
-    .activity-description { margin: 12px 0 0; color: var(--muted); font-size: 18px; line-height: 1.5; }
-    .activity-divider { height: 1px; margin-top: 18px; background: rgba(79,55,40,.13); }
+    .activity-card h3 { min-height:2.08em; margin: 0; font: 400 clamp(30px,3.2vw,43px)/1.04 Georgia,"Times New Roman",serif; }
+    .activity-description { margin: 12px 0 18px; color: var(--muted); font-size: 18px; line-height: 1.5; }
+    .activity-divider { height: 1px; margin-top: auto; background: rgba(79,55,40,.13); }
     .how-toggle { width: 100%; padding: 15px 0 5px; display: flex; align-items: center; gap: 9px; color: #8f472c; background: transparent; border: 0; cursor: pointer; font-size: 15px; font-weight: 800; text-align: left; }
     .how-arrow { display: inline-block; transition: transform .25s; }
     .how-toggle.open .how-arrow { transform: rotate(90deg); }
@@ -109,7 +109,7 @@
       .explore-button { margin-top:20px; }
     }
     @media (max-width:1180px) { .activity-grid { grid-template-columns:repeat(2,minmax(0,1fr)); } }
-    @media (max-width:960px) { .activities-inner { width:100%; } .activity-grid { grid-template-columns:1fr; } .activity-preview { height:300px; } }
+    @media (max-width:960px) { .activities-inner { width:100%; } .activity-grid { grid-template-columns:1fr; } .activity-card h3 { min-height:0; } .activity-preview { height:300px; } }
     @media (max-width:720px) {
       .hero { min-height:auto; padding:28px 13px; }
       .hero-box { width:100%; padding:39px 21px; border-radius:27px; }
@@ -147,7 +147,7 @@
           <article class="activity-card">
             <div class="activity-preview"><img src="assets/holiday-stories-preview-v3.png" alt="Starfish heart on neutral sand for Holiday Stories"><span class="activity-number">Activity 01</span></div>
             <div class="activity-content">
-              <div class="activity-type">Storytelling · Discussion</div>
+              <div class="activity-type">Storytelling</div>
               <h3>Holiday Stories</h3>
               <p class="activity-description">Eight visual prompts for sharing summer memories, building longer answers and asking natural follow-up questions.</p>
               <div class="activity-divider"></div>
@@ -158,10 +158,10 @@
           </article>
 
           <article class="activity-card">
-            <div class="activity-preview"><img src="assets/instagram-vs-reality-preview-v2.png" alt="Vacation polaroid collage for Instagram versus Reality"><span class="activity-number">Activity 02</span></div>
+            <div class="activity-preview"><img src="assets/instagram-vs-reality-preview-v2.png" alt="Vacation polaroid collage for Expectations versus Reality"><span class="activity-number">Activity 02</span></div>
             <div class="activity-content">
-              <div class="activity-type">Prediction · Discussion</div>
-              <h3>Instagram vs Reality</h3>
+              <div class="activity-type">Prediction</div>
+              <h3>Expectations vs Reality</h3>
               <p class="activity-description">Twelve holiday situations for describing perfect expectations, predicting problems and revealing the funny reality.</p>
               <div class="activity-divider"></div>
               <button class="how-toggle" type="button" aria-expanded="false"><span class="how-arrow">▶</span><span>How to play</span></button>
@@ -173,7 +173,7 @@
           <article class="activity-card">
             <div class="activity-preview"><img src="assets/travel-choices-preview.png" alt="Cream suitcase and straw hat on pale sand-coloured linen for Travel Choices"><span class="activity-number">Activity 03</span></div>
             <div class="activity-content">
-              <div class="activity-type">Choices · Storytelling</div>
+              <div class="activity-type">Choices</div>
               <h3>Travel Choices</h3>
               <p class="activity-description">Twelve travel dilemmas for making choices, explaining preferences and building a personal perfect-holiday story.</p>
               <div class="activity-divider"></div>
